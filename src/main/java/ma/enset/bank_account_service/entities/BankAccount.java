@@ -1,0 +1,28 @@
+package ma.enset.bank_account_service.entities;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import ma.enset.bank_account_service.enums.AccountStatus;
+import ma.enset.bank_account_service.enums.AccountType;
+import org.springframework.data.jpa.repository.Temporal;
+
+import java.util.Date;
+import java.util.List;
+
+@Entity
+@Data @NoArgsConstructor @AllArgsConstructor @Builder
+public class BankAccount {
+    @Id
+    private String id;
+    private String currency;
+    private Date createdAt;
+    private double balance;
+    @Enumerated(EnumType.STRING)
+    private AccountType type;
+    @Enumerated(EnumType.STRING)
+    private AccountStatus status;
+    private Long customerId;
+}
