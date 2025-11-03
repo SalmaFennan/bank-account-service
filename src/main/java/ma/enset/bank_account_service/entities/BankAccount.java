@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 import ma.enset.bank_account_service.enums.AccountStatus;
 import ma.enset.bank_account_service.enums.AccountType;
 import org.springframework.data.jpa.repository.Temporal;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class BankAccount {
     private String id;
     private String currency;
     private Date createdAt;
-    private double balance;
+    private Double balance;
     @Enumerated(EnumType.STRING)
     private AccountType type;
     @Enumerated(EnumType.STRING)

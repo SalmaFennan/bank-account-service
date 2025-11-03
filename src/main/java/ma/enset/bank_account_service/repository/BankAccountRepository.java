@@ -11,12 +11,4 @@ import java.util.List;
 public interface BankAccountRepository extends JpaRepository<BankAccount,String> {
     List<BankAccount> findByType(AccountType type);
     List<BankAccount> findByStatus(AccountStatus status);
-    @Query("select " +
-            "new ma.enset.bank_account_service.repository.AccountStatus(" +
-            "count(ba)," +
-            "sum(ba.balance), " +
-            "avg(ba.balance), " +
-            "min(ba.balance), " +
-            "max(ba.balance)) from BankAccount ba")
-    AccountStatus getBankStats();
 }
