@@ -3,7 +3,9 @@ package ma.enset.bank_account_service.web;
 import ma.enset.bank_account_service.dto.BankAccountRequestDTO;
 import ma.enset.bank_account_service.dto.BankAccountResponseDTO;
 import ma.enset.bank_account_service.entities.BankAccount;
+import ma.enset.bank_account_service.entities.Customer;
 import ma.enset.bank_account_service.repository.BankAccountRepository;
+import ma.enset.bank_account_service.repository.CustomerRepository;
 import ma.enset.bank_account_service.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -18,6 +20,8 @@ public class BankAccountGraphQlController {
     private BankAccountRepository bankAccountRepository;
     @Autowired
     private AccountService accountService;
+    @Autowired
+    private CustomerRepository customerRepository;
     @QueryMapping
     public List<BankAccount> accountList() {
         return bankAccountRepository.findAll();
@@ -41,6 +45,12 @@ public class BankAccountGraphQlController {
         bankAccountRepository.deleteById(id);
         return true;
     }
+
+    @QueryMapping
+    public List<Customer> customers() {
+        return customerRepository.findAll();
+    }
+
 
 
 }

@@ -1,29 +1,45 @@
 enum AccountType {
-    CURRENT_ACCOUNT
-    SAVING_ACCOUNT
+  CURRENT_ACCOUNT,
+  SAVING_ACCOUNT
 }
 
 enum AccountStatus {
-    CREATED
-    ACTIVATED
-    SUSPENDED
+  CREATED,
+  ACTIVATED,
+  SUSPENDED
 }
+
 
 type BankAccount {
     id: String,
     createdAt: String,
     balance: Float,
     type: String,
-    currency:String
+    currency:String,
+    customer: Customer
 }
 
 type Query {
     accountList: [BankAccount],
-    accountById(id: String): BankAccount
+    accountById(id: String): BankAccount,
+    customers: [Customer]
 }
 
-type Mutation{
-    addAccount(bankAccount: BankAccountDTO) : BankAccount,
-    updateAccount(id:String,bankAccount:BanKAccountDTO): BankAccount,
-    deleteAccount(id:String) : String
+type Mutation {
+  addAccount(bankAccount: BankAccountDTO): BankAccount
+  updateAccount(id: String, bankAccount: BankAccountDTO): BankAccount
+  deleteAccount(id: String): String
+}
+
+input BankAccountDTO {
+  id: ID
+  balance: Float
+  type: String
+  currency: String
+  customerId: ID
+}
+type Customer{
+id: ID,
+name: String
+bankAccounts : [BankAccount]
 }

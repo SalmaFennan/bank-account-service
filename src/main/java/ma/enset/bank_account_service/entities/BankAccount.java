@@ -13,17 +13,25 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Builder(toBuilder = true)
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor @Builder
 public class BankAccount {
     @Id
     private String id;
+
     private String currency;
     private Date createdAt;
     private Double balance;
+
     @Enumerated(EnumType.STRING)
     private AccountType type;
+
     @Enumerated(EnumType.STRING)
     private AccountStatus status;
-    private Long customerId;
+
+    @ManyToOne
+    private Customer customer;
 }

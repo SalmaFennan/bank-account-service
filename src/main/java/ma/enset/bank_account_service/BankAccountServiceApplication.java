@@ -44,7 +44,7 @@ public class BankAccountServiceApplication {
 							.type(Math.random() > 0.5 ? AccountType.CURRENT_ACCOUNT : AccountType.SAVING_ACCOUNT)
 							.balance(10000 + Math.random() * 90000)
 							.createdAt(new Date())
-							.customerId(customer.getId())   // ✔ correction ici
+							.customer(customer)
 							.currency("MAD")
 							.status(AccountStatus.CREATED)
 							.build();
