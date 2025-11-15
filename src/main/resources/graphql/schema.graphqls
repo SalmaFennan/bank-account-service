@@ -1,0 +1,29 @@
+enum AccountType {
+    CURRENT_ACCOUNT
+    SAVING_ACCOUNT
+}
+
+enum AccountStatus {
+    CREATED
+    ACTIVATED
+    SUSPENDED
+}
+
+type BankAccount {
+    id: String,
+    createdAt: String,
+    balance: Float,
+    type: String,
+    currency:String
+}
+
+type Query {
+    accountList: [BankAccount],
+    accountById(id: String): BankAccount
+}
+
+type Mutation{
+    addAccount(bankAccount: BankAccountDTO) : BankAccount,
+    updateAccount(id:String,bankAccount:BanKAccountDTO): BankAccount,
+    deleteAccount(id:String) : String
+}

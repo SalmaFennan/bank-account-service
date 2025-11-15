@@ -2,6 +2,7 @@ package ma.enset.bank_account_service.web;
 
 import ma.enset.bank_account_service.dto.BankAccountRequestDTO;
 import ma.enset.bank_account_service.dto.BankAccountResponseDTO;
+import ma.enset.bank_account_service.mappers.AccountMapper;
 import ma.enset.bank_account_service.service.AccountService;
 import org.springframework.web.bind.annotation.RequestBody;
 import ma.enset.bank_account_service.entities.BankAccount;
@@ -14,11 +15,13 @@ import java.util.List;
 
 @RestController
 public class AccountRestController {
+    private AccountMapper accountMapper;
     private final AccountService accountService;
     private BankAccountRepository bankAccountRepository;
-    public AccountRestController(BankAccountRepository bankAccountRepository, AccountService accountService) {
+    public AccountRestController(BankAccountRepository bankAccountRepository, AccountService accountService, AccountMapper accountMapper) {
         this.bankAccountRepository = bankAccountRepository;
         this.accountService = accountService;
+        this.accountMapper = new AccountMapper();
     }
     @GetMapping("/bankAccount")
     public List<BankAccount> bankAccounts() {
